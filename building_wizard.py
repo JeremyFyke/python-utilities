@@ -50,8 +50,8 @@ input_token=[]
 print("What are the key components of your building?  Enter as many as you like.  Just type 'done' when done.")
 while input_token != 'done':
     input_token=input("component: ")
-    infrastructure_component_dictionary[input_token]=[]
-infrastructure_component_dictionary.pop('done')
+    infrastructure_component_dictionary[input_token]=[] #make a dictionary key for each listed component, and set value to a blank list
+infrastructure_component_dictionary.pop('done') #clean up
 
 #Now prompt the user to consider the weather/climate impacts, on a componentwise basis.
 ##Provide some standard hazards, and then prompt user to add more if needed
@@ -60,15 +60,15 @@ for key in infrastructure_component_dictionary:
     print("Which of the following climate and weather impacts to the "+key+" keep you up at night now, or might in the future (y/n)?")
     for h in hazard_dict:
         if input(h+"? ") == 'y':
-            infrastructure_component_dictionary[key].append(h)
-    if 'other' in infrastructure_component_dictionary[key]:
+            infrastructure_component_dictionary[key].append(h) #append each relevant hazard to the list of hazards for each component
+    if 'other' in infrastructure_component_dictionary[key]: #extend list with any custom hazards provided by user.
         print("Looks like you are thinking of other possible hazards.  What are they?  Type 'done' when done.")
         input_token=[]
         while input_token != 'done':
             input_token=input("possible hazard: ")
             infrastructure_component_dictionary[key].append(input_token)
-        infrastructure_component_dictionary[key].remove('other')
-        infrastructure_component_dictionary[key].remove('done')
+        infrastructure_component_dictionary[key].remove('other') #clean up 
+        infrastructure_component_dictionary[key].remove('done') #clean up
             
 infrastructure_hazards=list(set(itertools.chain(*infrastructure_component_dictionary.values())))
 print("Good job!  You've identified some key climate hazards for your building in particular, that may change due to climate change.")
