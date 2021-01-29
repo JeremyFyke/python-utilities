@@ -44,13 +44,12 @@ hazard_dict={"river flooding":{"resource":"National Research Council", "URL":"ht
 
 #Initialize some lists that the user will grow interactively.
 infrastructure_component_dictionary={}
-input_token=[]
 
 #Prompt the user to define the components of their building.  This list can be as long as needed.
 print("What are the key components of your building?  Enter as many as you like.  Just type 'done' when done.")
 while input_token != 'done':
     input_token=input("component: ")
-    infrastructure_component_dictionary[input_token]=[] #make a dictionary key for each listed component, and set value to a blank list
+    infrastructure_component_dictionary[input("component: ")]=[] #make a dictionary key for each listed component, and set value to a blank list
 infrastructure_component_dictionary.pop('done') #clean up
 
 #Now prompt the user to consider the weather/climate impacts, on a componentwise basis.
